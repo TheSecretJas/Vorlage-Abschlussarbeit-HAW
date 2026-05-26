@@ -1,0 +1,95 @@
+\section{Theoretische Betrachtungen}
+\label{chap:Theoretische_Betrachtungen}
+WICHTIGE HINWEISE IN BEDIENUNGSHINWEISE\_LABORBERICHT.PDF\\
+
+
+Bruch: $\frac{oben}{unten_{\text{tief}}}$\\ \\
+Einheiten $\mm \N \Npmm \ etc.\ $ Eigene Definition in \verb|misc/Einheitenmacros| möglich\\ \\ 
+Leerzeichen: $2\ 3 2\,3 3 \quad3$\\ \\
+Integrale etc: $\oint^3_2 \quad \int^2_1 \quad \sum M_x\ \iint_{x_{0}}^{x_1}dz\,ds \quad  \sqrt{33} \ \sqrt[3]{33} \ \left(\frac{2}{8}\right)^{33} \ $\\ \\
+Formelzeichen: $2-3+4 \cdot 3 \% = 2\cdot 4 \geq 3 \leq 2 \neq 5 $ \\ \\
+Griechische Symbole : $\sigma \tau \delta \Delta \varrho$\\ \\
+Glossaries Package Plural: \glspl{GK} \\ \\
+
+\textbf{Gleichung} mit Beschriftung:
+\begin{align} \label{eq:AuftriebsgradientBeliebig}
+     {\left( \frac{dC_A}{d_\alpha} \right)}_\textit{TL} =  \frac{{\left(\frac{dc_a}{d_\alpha}\right)}_{PT}} {1+\frac{{\left(\frac{dc_a}{d_\alpha}\right)}_{PT}}{\pi\Lambda}(1+\tau)} = \frac{2\pi}{1+{\frac{2}{\Lambda}}(1+\tau)}
+\end{align}
+
+
+In \autoref{eq:AuftriebsgradientBeliebig} kann man erkennen...\\ \\
+\textit{Mehrzeilige} Gleichungen (Alignement mit \&):
+\begin{align} \label{eq:Vor Umformung}
+    F&= 23 + \frac{N}{\sigma} \\
+    \label{eq: Nach Umformung}
+  \Leftrightarrow F&= \frac{23+N-\delta}{23}
+\end{align}
+\autoref{eq:Vor Umformung} lässt sich problemfrei zu \autoref{eq: Nach Umformung} umformen!
+
+
+
+\begin{tabularx}{\columnwidth}{|X|X|} 
+\caption{Beispieltabelle} \label{tab:Beispieltabelle} \\\hline
+\multicolumn{1}{|c|}{\textbf{Überschrift 1}} &
+\multicolumn{1}{c|}{\textbf{Überschrift 2}} \\ \hline
+Bsp. 1 & Bsp 2 \\ \hline
+Bsp. 3 & Bsp 4 \\ \hline
+\end{tabularx}
+
+
+
+
+
+\begin{tabularx}{\columnwidth}{|l|l|} 
+\caption{Beispieltabelle klein} \label{tab:Beispieltabelle_klein} \\ \hline
+\multicolumn{1}{|c|}{\textbf{Überschrift 1}} &
+\multicolumn{1}{c|}{\textbf{Überschrift 2}} \\ \hline
+Bsp. 1 & Bsp 2 \\ \hline
+Bsp. 3 & Bsp 4 \\ \hline
+\end{tabularx}
+
+\newfigure[Ein Bild vom Flughafen]{0.6}{placeholder.JPG}{Ein Bild vom Flughafen Bsp. Bildquelle: \cite{DIN_EN_2597}}
+\FloatBarrier
+In \autoref{fig:placeholder.JPG} lässt sich ein Flugzeug erahnen.
+
+\newmultifig{placeholder.JPG}{Noch ein Beispiel}{placeholder.JPG}{Die Warnungen entstehen wegen drei mal dem gleichen Bild}
+
+
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\columnwidth}{|X|l|l|l|}
+\caption{Beispieltabelle, mit Fortsetzung}\label{tab:Fortsetzung} \\ \hline
+\multicolumn{1}{|c|}{\textbf{Segment}} & \multicolumn{1}{|c|}{\textbf{Breite $\mathbf{[\mathrm{m}]}$}} & \multicolumn{1}{|c|}{\textbf{Höhe $\mathbf{[\mathrm{m}]}$}} & \multicolumn{1}{|c|}{\textbf{Größe $\mathbf{[\mathrm{m}^2]}$}} \\ \hline \endfirsthead
+\caption*{\autoref{tab:Fortsetzung} Fortsetzung: Beispieltabelle, mit Fortsetzung} \\\hline 
+\multicolumn{1}{|c|}{\textbf{Segment}} & \multicolumn{1}{|c|}{\textbf{Breite $\mathbf{[\mathrm{m}]}$}} & \multicolumn{1}{|c|}{\textbf{Höhe $\mathbf{[\mathrm{m}]}$}} & \multicolumn{1}{|c|}{\textbf{Größe $\mathbf{[\mathrm{m}^2]}$}} \\ \hline \endhead
+$1.$ Wert & $1,01$                     & $0,5$                       & $0,505$                                 \\ \hline
+$2.$ Wert   & $1,01$                     & $0,5$                       & $0,505$                                  \\ \hline
+$3.$ Wert & $1,01$                     & $0,44$                      & $0,44$                                   \\ \hline
+$4.$ Wert               & $1,01$                     & $0,12$                      & $0,12$                                   \\ \hline
+$5.$ Wert              & $1,01$                     & $0,51$                      & $0,52$                                    \\ \hline
+$6.$Wert                   & $1,01$                     & $0,355$                     & $0,36$                                   \\ \hline
+$7.$ Wert       & $0,2$                      &$0,08$                      & $0,02$                                    \\ \hline
+$8.$ Wert                 & $0,9$                      & $0,45$                      & $0,41$                                   \\ \hline
+$9.$ Wert       & $1,01$                     & $0,56$                      & $0,57$                                   \\ \hline
+$10.$  Wert              & $1,01$                     & $0,04$                      & $0,04$                                   \\ \hline
+$11.$  Wert       & $1,01$                     & $0,67$                      & $0,68$                                   \\ \hline
+$12.$ Wert              & $1,01$                     & $0,74$                      & $0,75$                                   \\ \hline
+\end{tabularx}
+Es ist einiges dargestellt. In \autoref{Code:Error} findet sich die Zeile, die eine Fehlermeldung ausgibt.\\
+
+\begin{lstlisting}
+   # Die Daten aus der gewuenschten Spalte extrahieren
+    self.data_column = list(df[column_name])
+    self.total_count = len(self.data_column)
+    # Automatisch alle einzigartigen Ergebnisse finden und fuer eine konsistente Reihenfolge sortieren
+    self.outcomes = sorted(list(set(self.data_column)))
+    print(f"Datei '{filepath}' erfolgreich geladen. {self.total_count} Eintraege in Spalte '{column_name}' gefunden.")
+    print(f"  Gefundene Ergebnisse: {self.outcomes}")
+
+    except FileNotFoundError: (*@\label{Code:Error}@*)
+        print(f"Fehler: Die Datei unter '{filepath}' wurde nicht gefunden.")
+    except KeyError:
+        print(f"Fehler: Die Spalte '{column_name}' wurde in der Datei nicht gefunden.")
+    except Exception as e:
+        print(f"Ein unerwarteter Fehler ist aufgetreten: {e}")
+   
+\end{lstlisting}

@@ -1,0 +1,49 @@
+%% Created by Jonas Thern
+% Version 5.2 
+% Weitere Infos in Bedienungshinweise.pdf
+\documentclass[a4paper,12pt,twoside]{article}
+\input{misc/Background/Settings}
+\input{misc/Setup}
+\input{misc/Einheitenmacros}
+\input{misc/Background/Symbolverzeichnis}
+\makeglossaries
+\input{Kapitel/00-Symbole}
+\addbibresource{Literatur.bib}
+\hypersetup{pdfsubject={\Zusammenfassung}
+             ,pdftitle={\Titel}
+             ,pdfauthor={\Autor}
+             ,pdfkeywords={\Stichworte}
+             }
+
+
+
+%Titelseite:
+%HAW-grün
+\input{misc/Background/HAW_Stil/Titelpage_haw_stil}
+
+%andere Version
+%\input{misc/Background/titlepage}
+
+
+  %%DOKUMENTBEGINN           
+\begin{document}
+\input{misc/Background/Dokumentbeginn}
+
+%% Kapitel ab hier
+\input{Kapitel/01-Einleitung}
+\clearpage
+\input{Kapitel/02-Theoretische Grundlagen}
+\clearpage
+\input{Kapitel/03-Methodik}
+\clearpage
+\input{Kapitel/04-Ergebnisse und Diskussion}
+\clearpage
+\input{Kapitel/05-Ausblick}
+\clearpage
+\printbibliography[heading=bibintoc, title={Literaturverzeichnis}]
+
+\input{Kapitel/100-Anhang}
+\clearpage
+\input{misc/Background/HAW_Stil/Selbstständigkeitserklärung}
+\end{document}
+

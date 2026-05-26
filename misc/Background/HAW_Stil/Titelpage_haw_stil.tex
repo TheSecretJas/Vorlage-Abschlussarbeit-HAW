@@ -1,0 +1,122 @@
+
+\renewcommand*{\maketitle}{
+  \begin{titlepage}%
+  \hawCover
+%    \clearpage
+ %   \null\thispagestyle{empty}
+%    \clearpage
+  \hawtitelpage
+  \end{titlepage}
+}
+
+%%%%%%%%%%% COVER PAGE %%%%%%%%%%%%%%%%%%
+
+\newcommand*{\hawCover}{%
+  \thispagestyle{empty}%
+
+  %% Streng vertraulich if needed
+
+
+%\definecolor{vertraulich}{rgb}{1.0,0.4,0.0} 
+%\begin{textblock*}{\textwidth}(75mm,9mm)
+ % \begin{minipage}[b][0cm][b]{\textwidth}
+  %\hfuzz=20pt
+  %\fontsize{16pt}{16pt}
+  %\selectfont
+   % \begin{flushleft}
+    %	 \textcolor{vertraulich}{STRENG VERTRAULICH} 
+    %\end{flushleft}
+  %\end{minipage}
+%\end{textblock*}
+
+  % HAW-Blau für den Schriftzug unten rechts definieren
+  \definecolor{HAWBlue}{RGB}{0,51,153} 
+  
+  % HAW Logo oben rechts positionieren
+  \begin{textblock*}{9cm}(13cm, 1.5cm)
+    \begin{minipage}[r]{\textwidth}%
+      \includegraphics[width=7cm]{misc/Background/Logos/HAW_Marke}%
+    \end{minipage}%
+  \end{textblock*}
+
+  % Haupttextblock mit exakt 6cm linkem Seitenrand via textpos
+  \begin{textblock*}{13cm}(6cm, 6.5cm)
+    {%
+     % Dokumentenart & Autor in Helvetica (Größe 9pt, Zeilenabstand 11pt)
+     \raggedright
+     \fontfamily{phv}\selectfont
+     \fontsize{9pt}{11pt}\selectfont
+     \textbf{\uppercase{\Dokumentenart}}\\
+     \Autor\\[1cm]
+     
+     % Titel in Serifenschrift (Latin Modern Roman) in Größe 23pt
+     {\fontfamily{put}\selectfont\fontsize{23pt}{28pt}\selectfont\bfseries\Titel\par}
+     \vspace{2mm}
+     % Schwarze Trennlinie unter dem Titel
+     \rule{1cm}{3pt}\\[0.8cm]
+     
+     % Fakultätsbeschriftungen in Helvetica (Größe 9pt)
+     \fontfamily{phv}\selectfont
+     \fontsize{9pt}{11pt}\selectfont
+     \textbf{\uppercase{Fakultät Luftfahrt- und Fahrzeugsysteme}}\\[0.8cm]
+
+     Faculty of Aviation and Automotive Systems\\
+    }%
+  \end{textblock*}
+
+  % Blauer Info-Block unten rechts (Größe 9pt)
+  \begin{textblock*}{9cm}(13cm, 24.5cm)
+    {%
+     \fontfamily{phv}\selectfont\color{HAWBlue}%
+     \rule{0.8cm}{1.5pt}\\
+     \fontsize{9pt}{11pt}\selectfont
+     \textbf{HOCHSCHULE FÜR ANGEWANDTE}\\
+     \textbf{WISSENSCHAFTEN HAMBURG}\\
+     {\small Hamburg University of Applied Sciences}%
+    }%
+  \end{textblock*}
+  \null\newpage
+}
+
+
+%%%%%%%%%%%INFOSEITE%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\hawtitelpage}{
+{\fontfamily{phv}\selectfont \thispagestyle{empty}
+\newgeometry{left=3.5cm,bottom=3.5cm,top=5cm}
+\noindent\hfil
+  \begin{minipage}{12cm}
+    \fontsize{18pt}{20pt}
+    \selectfont
+    \begin{center}
+     \bfseries \Autor \\
+     \vspace{10pt}
+     \bfseries \Titel
+    \end{center}
+  \end{minipage}
+  
+
+  % Important information
+      \vfill
+      \fontfamily{phv}\selectfont
+      \fontsize{12pt}{13pt}
+      \selectfont
+        
+      
+        \Dokumentenart ~eingereicht im Rahmen der \Pruefungsart \\ \\
+	    im Studiengang Flugzeugbau \\
+        an der Fakultät Luftfahrt- und Fahrzeugsysteme\\
+        der Hochschule für Angewandte Wissenschaften Hamburg\\
+        \\
+        \Firma\\ 
+        \\
+        \Erstpruefer \\
+        \Zweitpruefer \\
+        \\
+        \Betreuer \\ 
+        \\
+        Abgabedatum: \Datum 
+      
+\restoregeometry
+}
+}

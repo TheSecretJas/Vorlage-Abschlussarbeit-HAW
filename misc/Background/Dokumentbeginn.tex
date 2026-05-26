@@ -1,0 +1,54 @@
+\maketitle
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhf{}
+\fontsize{12}{18}\selectfont
+\input{misc/Background/HAW_Stil/Abstractpage}
+\clearpage
+
+%%Optional wenn gerade Anzahl an Seiten im Beginn [S.1 RECHTS]
+%\null\thispagestyle{empty}
+%Alternativ:
+\input{misc/Sperrvermerk}
+\input{misc/Danksagung}
+\clearpage
+%\null\thispagestyle{empty}
+%\clearpage
+
+
+%%KOPFZEILENEINSTELLUNGEN
+\renewcommand{\headrulewidth}{0.5pt}
+\pagenumbering{Roman}
+\setcounter{page}{1}
+
+%% Design twoside
+\setlength{\headheight}{18pt}
+\fancyhead[LO,RE]{\changefontbig\nouppercase{\textit{\firstleftmark}}}
+\fancyhead[RO,LE]{\changefontbig\thepage}
+
+%Verzeichnisse
+\maintoc
+\clearpage
+%Abbildungs- und Tabllenverzeichnis
+\listoffigures
+\clearpage
+\listoftables
+\clearpage
+
+%%Abkürzungsverzeichnis
+\printglossary[type=acronym,style=acrotab, title = Abkürzungen]
+%%Symbolverzeichnis
+\printglossary[type=symbols, style=symboltablr, title = Nomenklatur]
+\clearpage
+
+
+%%Optional wenn gerade Anzahl an Seiten im Beginn [S.1 RECHTS]
+\null\thispagestyle{empty}
+\clearpage
+%%Optional wenn gerade Anzahl an Seiten im Beginn [S.1 RECHTS]
+\null\thispagestyle{empty}
+\clearpage
+
+
+\setcounter{table}{0} \renewcommand{\arraystretch}{1.15}
+\pagenumbering{arabic}

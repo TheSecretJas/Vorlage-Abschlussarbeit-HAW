@@ -1,0 +1,259 @@
+\usepackage{etoolbox} %programming facilities for Symbolverzeichnis
+\usepackage[ngerman]{babel} %Sorachdefinition für alles
+\usepackage[backend=biber,style=ieee]{biblatex} %Bibliotheksmanagement
+%\usepackage[onehalfspacing]{setspace} %% Zeilenabstände, singlespacing 1-fach, onehalfspacing 1,5-fach, doublespacing 2-fach 
+\usepackage[T1]{fontenc}
+\usepackage{textcomp} % Verhindert Warnungen bei bestimmten Sonderzeichen
+\usepackage{lmodern}
+\usepackage[scaled]{helvet}   % Lädt Helvetica (phv)
+\renewcommand{\familydefault}{\sfdefault} 
+\usepackage[italic]{mathastext} 
+\Mathastext
+\usepackage{graphicx}
+\graphicspath{{Bilder/}} %Bildpfad, nötig für
+\usepackage{csquotes} %nötig für biblatex und \textquote (Anführungszeichen)
+\usepackage{fancyhdr} % Kopf/Fußzeile in SEHR GEIL
+\usepackage{extramarks}
+\usepackage[a4paper,tmargin=2cm, lmargin=3.2cm,rmargin =2cm,bmargin=3cm]{geometry} %15,5 cm Platz zum schreiben
+\usepackage{tabularx} %Bestes Tabellenpackage
+\usepackage{icomma} %kein Platz nach einem Komma in mathmode
+\usepackage{lastpage} % Ausgabe der letzten Seite
+%\usepackage{stix} % Nötig für HAW: Schriftarten
+\usepackage{amsmath} %Vernünftiger Mathmode bit \begin{align}
+\usepackage{xfrac} % Darstellung von Equations im Text
+\usepackage{tikz} % Grafikzeichenpackage
+\usepackage{pdfpages} %Vernünftige Einbindung von PDFs auch als ganze Seiten mit Beibehalten des Formats
+\usepackage{svg} %Bilder im svg Format 
+\usepackage[table]{xcolor} %Vernünftige Farben in Tabellen
+\usepackage[nottoc,notbib]{tocbibind} %Einbindung der Abbildungsverzeichnise ins TOC
+\usepackage[hang,font=small]{caption} %Mehrzeilige Darstellung von Überschriften
+\usepackage[hang]{footmisc} % Mehrzeiliges Einrücken von Fußnoten
+\usepackage{tablefootnote} % Fußzeilen in Tabellen
+\usepackage[absolute]{textpos} %Wichtig für Titelseite
+\usepackage[section]{placeins} %\Floatbarrier
+\usepackage[normalem]{ulem} %Texte durchstreichen mit \sout bzw unterschtreichen 
+\usepackage{comment} %\begin{comment} und \end{comment} als Kommentierumgebung
+\usepackage{listings} %Codedarstellung mit \begin{lstlisting}[language=python]
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black]{hyperref} %Hyperref als beste Refenzierungspackage
+
+
+%% Text und Schriftgrößeneinstellungen 
+\setlength{\parindent}{0em}% kein Einrücken
+\newcommand{\changefont}{\fontsize{7}{12}\selectfont}%Kopfzeile
+\newcommand{\changefontbig}{\fontsize{10}{12}\selectfont}%Kopfzeile
+\setcounter{biburllcpenalty}{9000}% Kleinbuchstaben
+\setcounter{biburlucpenalty}{9000}% Großbuchstaben
+\widowpenalty = 10000 %Vermeidung von Satzende auf nöchster Seite
+\clubpenalty = 10000 %Vermeidung von Absatzende auf nöchster Seite
+
+
+%Nummerierungen innerhalb der Sections
+\numberwithin{equation}{section}
+\numberwithin{table}{section}
+\numberwithin{figure}{section}
+
+%%Lists in academic style
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+\renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}}
+\renewcommand{\labelenumiv}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.\arabic{enumiv}}
+\renewcommand{\labelitemi}{-}
+
+%% KOPFZEILE DARSTELLUNG Leftmark ohne sectionnummer
+
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}%
+\renewcommand{\subsectionmark}[1]{\markright{#1}}%
+
+% Neudefintionen von autoref Verweisen
+%autoref mit Equation Darstellung Gleichung (x)
+\makeatletter
+  \AtBeginDocument{%
+    \let\plain@equationautorefname\equationautorefname
+    \def\equationautorefname{\plain@equationautorefname\@autoref@insert@tagform}%
+    \def\@autoref@insert@tagform~#1\null{~(#1\null)}%
+  }
+\makeatother
+
+% Kapitelverweise mit Abschnitt statt Standard
+\addto\extrasngerman{\def
+\subsectionautorefname{Unterkapitel}
+}
+
+\addto\extrasngerman{\def
+\subsubsectionautorefname{Unterkapitel}
+}
+
+\addto\extrasngerman{\def
+\sectionautorefname{Kapitel}
+}
+
+
+% Ändert den Text, den \autoref verwendet
+
+\renewcommand{\lstlistingname}{Code-Ausschnitt}
+\def\lstnumberautorefname{Zeile}
+
+% --- Farben für das Spyder-Theme definieren ---
+% Basierend auf deinem Screenshot
+\definecolor{spyderBlue}{HTML}{0000FF}    % Keywords (import, from)
+\definecolor{spyderGreen}{HTML}{008000}   % Strings und Docstrings
+\definecolor{spyderGrey}{HTML}{999999}    % Kommentare
+\definecolor{spyderCyan}{HTML}{9a0aab}    % Klassen, spezielle Funktionen
+\definecolor{spyderNumber}{HTML}{B8860B}  % Ein gut lesbarer Gelb/Gold-Ton
+\definecolor{spyderself}{HTML}{b80b1f}
+
+% --- Den Listing-Stil definieren ---
+\lstdefinestyle{spyderstyle}{
+    language=Python,
+    backgroundcolor=\color{white},   
+    commentstyle=\color{spyderGrey},
+    keywordstyle=\color{spyderCyan},
+    stringstyle=\color{spyderGreen},
+    numberstyle=\tiny\color{darkgray}, 
+    basicstyle=\ttfamily\footnotesize\color{black},
+    emphstyle=\color{spyderCyan},
+    emph={[2]int, str, float, list, dict, set, tuple, print, range, open, len},
+    emphstyle={[2]\color{spyderBlue}\bfseries},
+    emph={[3]self},
+    emphstyle={[3]\color{spyderself}\bfseries},
+    escapeinside={(*@}{@*)},
+    literate=
+      *{0}{{{\color{spyderNumber}0}}}1
+       {1}{{{\color{spyderNumber}1}}}1
+       {2}{{{\color{spyderNumber}2}}}1
+       {3}{{{\color{spyderNumber}3}}}1
+       {4}{{{\color{spyderNumber}4}}}1
+       {5}{{{\color{spyderNumber}5}}}1
+       {6}{{{\color{spyderNumber}6}}}1
+       {7}{{{\color{spyderNumber}7}}}1
+       {8}{{{\color{spyderNumber}8}}}1
+       {9}{{{\color{spyderNumber}9}}}1
+       {.}{{{\color{spyderNumber}.}}}1
+       {e-}{{{\color{spyderNumber}e-}}}2
+       {e+}{{{\color{spyderNumber}e+}}}2
+       {E-}{{{\color{spyderNumber}E-}}}2
+       {E+}{{{\color{spyderNumber}E+}}}2,,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4}
+
+% Den Stil als Standard für alle Listings setzen
+\lstset{style=spyderstyle}
+
+
+%% Anhangsverzeichnis
+
+%Aufsplittung Inhalts und Anhangsverzeichnis 
+\makeatletter% 
+\newcommand*{\maintoc}{% Hauptinhaltsverzeichnis
+  \begingroup
+    \@fileswfalse% kein neues Verzeichnis öffnen
+    \renewcommand*{\appendixattoc}{% Trennanweisung im Inhaltsverzeichnis
+      \value{tocdepth}=-10000 % lokal tocdepth auf sehr kleinen Wert setzen
+    }%
+    \tableofcontents% Verzeichnis ausgeben
+  \endgroup
+}
+\newcommand*{\appendixtoc}{% Anhangsinhaltsverzeichnis
+  \begingroup
+    \edef\@alltocdepth{\the\value{tocdepth}}% tocdepth merken
+    \setcounter{tocdepth}{-10000}% Keine Verzeichniseinträge
+    \renewcommand*{\contentsname}{% Verzeichnisname ändern
+      Anhangsverzeichnis}%
+    \renewcommand*{\appendixattoc}{% Trennanweisung im Inhaltsverzeichnis
+      \setcounter{tocdepth}{\@alltocdepth}% tocdepth wiederherstellen
+    }%
+    \tableofcontents% Verzeichnis ausgeben
+    \setcounter{tocdepth}{\@alltocdepth}% tocdepth wiederherstellen
+  \endgroup
+}
+\newcommand*{\appendixattoc}{% Trennanweisung im Inhaltsverzeichnis
+}
+\g@addto@macro\appendix{% \appendix erweitern
+  \clearpage% Neue Seite
+  \addcontentsline{toc}{section}{\appendixname}% Eintrag ins Hauptverzeichnis
+  \addtocontents{toc}{\protect\appendixattoc}% Trennanweisung in die toc-Datei
+}
+\makeatother
+
+
+
+%% Kurzbefehle für eigene Designcommands
+
+%Römische Zahlen
+\newcommand{\uproman}[1]{\uppercase\expandafter{\romannumeral#1}}
+\newcommand{\lowroman}[1]{\romannumeral#1\relax}
+
+
+%Kreis um z.B. Zahl
+\newcommand\circlearound[1]{\unitlength1ex\begin{picture}(2.1,2.1)%
+\put(0.5,0.5){\ \circle{2.1}}\put(0.5,0.5){\ \makebox(0,0){#1}}\end{picture}}
+
+
+%%plus und minus in kleiner
+\newcommand{\plus}{\raisebox{.4\height}{\scalebox{.6}{+}}}
+\newcommand{\minus}{\raisebox{.4\height}{\scalebox{.8}{-}}}
+
+
+%% Kurzbefehle fürs Einfügen von Bildern und Svgs
+
+\newcommand*{\newfigure}[4][]{%
+    \begin{figure}[ht!]%
+        \centering%
+        \includegraphics[width=#2\textwidth]{#3}%
+        \caption[#1]{#4}%
+         \label{fig:#3}%
+        \ifx&#1&%
+            % No short caption provided, use full caption for list of figures
+            \addcontentsline{lof}{figure}{\protect\numberline{\thefigure}#4}%
+        \fi%
+    \end{figure}%
+    \FloatBarrier
+    }
+
+
+\newcommand*{\newsvg}[4][]{%
+    \begin{figure}[ht!]%
+        \centering%
+        \includesvg[width=#2\textwidth]{#3}%
+        \caption[#1]{#4}%
+        \label{fig:#3}%
+        \ifx&#1&%
+            % No short caption provided, use full caption for list of figures
+            \addcontentsline{lof}{figure}{\protect\numberline{\thefigure}#4}%
+        \fi%
+    \end{figure}%
+        \FloatBarrier
+}
+
+\newcommand*{\newmultifig}[4]{%
+\begin{figure}[ht!]
+\centering
+\begin{minipage}[t]{0.46\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{#1}
+    \caption{#2}
+    \label{fig:#1}   
+\end{minipage}
+\hspace{0.03\textwidth}
+\begin{minipage}[t]{0.46\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{#3}
+    \caption{#4}
+    \label{fig:#3}
+    \end{minipage}
+\end{figure}
+    \FloatBarrier
+}
+
+
+\newcommand{\newparagraph}[1]{
+\paragraph{#1}\label{#1}\mbox{}\\[1ex]
+}
+

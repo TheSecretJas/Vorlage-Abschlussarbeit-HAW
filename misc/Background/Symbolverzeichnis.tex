@@ -1,0 +1,310 @@
+\RequirePackage[nomain,symbols,acronym,xindy={language=german-din},toc,nostyles]{glossaries}
+\RequirePackage{tabularx}
+\RequirePackage{ltablex}
+\RequirePackage{booktabs}
+\RequirePackage{environ}
+\RequirePackage{expl3}
+\RequirePackage{xparse}
+\glsdisablehyper
+\keepXColumns              
+
+%%SYMBOLVERZEICHNIS%%
+
+\newcommand{\fixgap}{\noalign{\vskip-\bigskipamount}\noalign{\vskip-\medskipamount}}
+
+
+%%FORMELZEICHEN%%
+\newglossaryentry{Formelzeichen}{%
+type=symbols,%
+name={\bfseries{Skalare und Vektoren}},%
+description={\nopostdesc},%
+sort = {a}
+}
+
+%%MATRIZEN%%
+\newglossaryentry{matrices}{%
+type=symbols,%
+name={\bfseries{Matrizen}},%
+description={\nopostdesc},%
+sort = {b}
+}
+
+
+%%INDICES%%
+\newglossaryentry{Indices}{%
+type=symbols,%
+name={\bfseries{Indizierungen}},%
+description={\nopostdesc},%
+sort = {c}
+}
+
+
+\ExplSyntaxOn
+
+% Central variable for sort key manipulation
+\tl_new:N \l_autosort_tl
+
+% --- CENTRAL GREEK DICTIONARY ---
+% Replaces LaTeX macros with numeric prefixes to enforce DIN-sorting
+\cs_new_protected:Nn \apply_greek_sorting:N
+  {
+    \tl_replace_all:Nnn #1 { \alpha } { 01alpha }
+    \tl_replace_all:Nnn #1 { \beta  } { 02beta }
+    \tl_replace_all:Nnn #1 { \gamma } { 03gamma }
+    \tl_replace_all:Nnn #1 { \Gamma } { 03Gamma }
+    \tl_replace_all:Nnn #1 { \delta } { 04delta }
+    \tl_replace_all:Nnn #1 { \Delta } { 04Delta }
+    \tl_replace_all:Nnn #1 { \epsilon } { 05epsilon }
+    \tl_replace_all:Nnn #1 { \varepsilon } { 05varepsilon }
+    \tl_replace_all:Nnn #1 { \zeta } { 06zeta }
+    \tl_replace_all:Nnn #1 { \eta } { 07eta }
+    \tl_replace_all:Nnn #1 { \theta } { 08theta }
+    \tl_replace_all:Nnn #1 { \Theta } { 08Theta }
+    \tl_replace_all:Nnn #1 { \vartheta } { 08vartheta }
+    \tl_replace_all:Nnn #1 { \iota } { 09iota }
+    \tl_replace_all:Nnn #1 { \kappa } { 10kappa }
+    \tl_replace_all:Nnn #1 { \lambda } { 11lambda }
+    \tl_replace_all:Nnn #1 { \Lambda } { 11Lambda }
+    \tl_replace_all:Nnn #1 { \mu } { 12mu }
+    \tl_replace_all:Nnn #1 { \nu } { 13nu }
+    \tl_replace_all:Nnn #1 { \xi } { 14xi }
+    \tl_replace_all:Nnn #1 { \Xi } { 14Xi }
+    \tl_replace_all:Nnn #1 { \pi } { 15pi }
+    \tl_replace_all:Nnn #1 { \Pi } { 15Pi }
+    \tl_replace_all:Nnn #1 { \rho } { 16rho }
+    \tl_replace_all:Nnn #1 { \varrho } { 16varrho }
+    \tl_replace_all:Nnn #1 { \sigma } { 17sigma }
+    \tl_replace_all:Nnn #1 { \Sigma } { 17Sigma }
+    \tl_replace_all:Nnn #1 { \tau } { 18tau }
+    \tl_replace_all:Nnn #1 { \upsilon } { 19upsilon }
+    \tl_replace_all:Nnn #1 { \Upsilon } { 19Upsilon }
+    \tl_replace_all:Nnn #1 { \phi } { 20phi }
+    \tl_replace_all:Nnn #1 { \Phi } { 20Phi }
+    \tl_replace_all:Nnn #1 { \varphi } { 20varphi }
+    \tl_replace_all:Nnn #1 { \chi } { 21chi }
+    \tl_replace_all:Nnn #1 { \psi } { 22psi }
+    \tl_replace_all:Nnn #1 { \Psi } { 22Psi }
+    \tl_replace_all:Nnn #1 { \omega } { 23omega }
+    \tl_replace_all:Nnn #1 { \Omega } { 23Omega }
+  }
+
+% --- INTERNAL WRAPPERS ---
+% These macros handle the actual glossaries entry creation with forced expansion (V-variant)
+
+\cs_new_protected:Nn \define_formula_entry:nnnn
+  {
+    \newglossaryentry{#1}{
+      type=symbols, name={#1}, description={\nopostdesc},
+      symbol={\ensuremath{#2}}, user1={\ensuremath{\left[\mathrm{#3}\right]}},
+      sort={#4}, parent={Formelzeichen}
+    }
+  }
+\cs_generate_variant:Nn \define_formula_entry:nnnn { nnnV }
+
+\cs_new_protected:Nn \define_matrix_entry:nnnn
+  {
+    \newglossaryentry{#1}{
+      type=symbols, name={#1}, description={\nopostdesc},
+      symbol={\ensuremath{\mathbf{#2}}}, user1={\ensuremath{\left[\mathrm{#3}\right]}},
+      sort={#4}, parent={matrices}
+    }
+  }
+\cs_generate_variant:Nn \define_matrix_entry:nnnn { nnnV }
+
+\cs_new_protected:Nn \define_indice_entry:nnn
+  {
+    \newglossaryentry{#1}{
+      type=symbols, 
+      name={#1}, 
+      description={\nopostdesc},
+      symbol={\ensuremath{()\sb{\mathrm{#2}}}}, %
+      user1={\ensuremath{\left[\mathrm{-}\right]}},
+      sort={#3}, 
+      parent={Indices}
+    }
+  }
+\cs_generate_variant:Nn \define_indice_entry:nnn { nnV }
+
+% --- USER COMMANDS ---
+
+% 1. Standard Formula Symbols
+\NewDocumentCommand{\newformulasymbol}{ O{} m m m }
+  {
+    \tl_if_blank:nTF { #1 }
+      { \tl_set:Nn \l_autosort_tl { #3 } \apply_greek_sorting:N \l_autosort_tl \tl_put_right:Nn \l_autosort_tl { #2 } }
+      { \tl_set:Nn \l_autosort_tl { #1#2 } }
+    \define_formula_entry:nnnV { #2 } { #3 } { #4 } \l_autosort_tl
+  }
+
+% 2. Matrices (bold symbol)
+\NewDocumentCommand{\newmatrix}{ O{} m m m }
+  {
+    \tl_if_blank:nTF { #1 }
+      { \tl_set:Nn \l_autosort_tl { #3 } \apply_greek_sorting:N \l_autosort_tl \tl_put_right:Nn \l_autosort_tl { #2 } }
+      { \tl_set:Nn \l_autosort_tl { #1#2 } }
+    \define_matrix_entry:nnnV { #2 } { #3 } { #4 } \l_autosort_tl
+  }
+
+% 3. Indices
+\NewDocumentCommand{\newindice}{ O{} m m }
+  {
+    \tl_if_blank:nTF { #1 }
+      { \tl_set:Nn \l_autosort_tl { #3 } \apply_greek_sorting:N \l_autosort_tl \tl_put_right:Nn \l_autosort_tl { #2 } }
+      { \tl_set:Nn \l_autosort_tl { #1#2 } }
+    \define_indice_entry:nnV { #2 } { #3 } \l_autosort_tl
+  }
+
+\ExplSyntaxOff
+
+
+%%Verhaltensdefinition im Dokument (Mathe und Text) 
+
+\defglsentryfmt[symbols]{%
+\ifmmode%
+\glssymbol{\glslabel}%
+\else%
+\glsgenentryfmt~\glsentrysymbol{\glslabel}% %% Alternativen Label oder Label Symbol 
+\fi%
+}
+
+
+%Definition Stil Symbolverzeichnis als Tabelle mit Tablurax und Environ
+
+
+
+\NewEnviron{tableenv}{%
+\renewcommand{\arraystretch}{1.2} %Zeilenabstand
+  \begin{tabularx}{\columnwidth}{l@{\hspace{3em}} l@{\hspace{3em}} X} % Änderungen des Tabellendesign hier möglich 
+      \BODY
+  \end{tabularx}
+}
+
+
+\newglossarystyle{symboltablr}
+{%
+        \newcommand*\symbollevel{-1}
+  \renewenvironment{theglossary}%
+    {\tableenv}%
+    {\endtableenv}%
+  
+  \renewcommand*{\glsgroupheading}[1]{}%
+  \renewcommand*{\glsgroupskip}{}%
+
+ \newcommand*\symbolhead{%
+\toprule
+\bfseries Symbol & \bfseries Einheit &
+\bfseries Bedeutung \\ \midrule
+}%
+
+\renewcommand*{\glossaryheader}{ \endfirsthead
+\symbolhead \endhead
+\midrule \endfoot
+\bottomrule \endlastfoot
+\gdef\symbollevel{-1}%
+  }
+
+  
+\renewcommand*{\glossentry}[2]{%
+\ifglshaschildren{##1}{%
+\ifnum\symbollevel>0\relax%
+\tabularnewline\fixgap\bottomrule\tabularnewline[\smallskipamount]%%\bottomrule%
+\fi
+\gdef\symbollevel{0}
+\tabularnewline[%
+        \arraystretch\dimexpr-\ht\strutbox-\dp\strutbox\relax%
+      ]%
+\multicolumn{3}{l}{\glossentryname{##1}}}
+}%
+
+\renewcommand*{\subglossentry}[3]{%
+\ifnum\symbollevel=0\relax%
+\tabularnewline[\medskipamount]\symbolhead%
+\fi%
+\gdef\symbollevel{##1}%
+\glstarget{##2}{\glossentrysymbol{##2}} &
+\glsentryuseri{##2} &
+\glossentryname{##2} \tabularnewline
+}%
+}
+
+
+%%ENDE DEFINITON
+
+
+
+%%Definition Abkürzungsverzeichnis
+
+\NewEnviron{acroenv}{%
+\renewcommand{\arraystretch}{1.2} %Zeilenabstand
+  \begin{tabularx}{\columnwidth}{l@{\hspace{4em}} X} % Änderungen des Tabellendesign hier möglich 
+      \BODY
+  \end{tabularx}
+}
+
+\newglossarystyle{acrotab}
+{%
+  \renewenvironment{theglossary}%
+    {\acroenv}%
+    {\endacroenv}%
+  
+  \renewcommand*{\glsgroupheading}[1]{}%
+  \renewcommand*{\glsgroupskip}{}%
+
+ \newcommand*\acrohead{%
+\toprule
+\bfseries Abkürzung & \bfseries Bedeutung \\ \midrule
+}%
+
+\renewcommand*{\glossaryheader}{
+\acrohead \endfirsthead
+\acrohead \endhead
+\midrule \endfoot
+\bottomrule \endlastfoot}
+  
+\renewcommand*{\glossentry}[2]{%
+\glsentryitem{##1}% Entry number if required
+\glstarget{##1}{\glossentryname{##1}} & \glsentrydesc{##1} \\
+}
+}
+%%ENDE DEFINITION
+
+%%Alternative Abkürzungsverzeichnis
+\newglossarystyle{acrolist}{%
+  \renewenvironment{theglossary}%
+    {\begin{description}}%
+    {\end{description}}%
+  \renewcommand*{\glsgroupheading}[1]{}%
+  \renewcommand*{\glsgroupskip}{}%
+  \renewcommand*{\glossentry}[2]{%
+    \item[\glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}}] \glsentrydesc{##1}%
+  }%
+}
+
+
+%% Einstellungen für das Dokument: 
+\providecommand{\Autor}{}
+\providecommand{\Vorname}{}
+\providecommand{\Nachname}{}
+\providecommand{\Matrikelnummer}{}
+\providecommand{\Datum}{}
+
+%% Titel der Arbeit:
+\providecommand{\Titel}{}
+\providecommand{\TitelEN}{}
+
+%% Typ der Arbeit
+\providecommand{\Dokumentenart}{}
+\providecommand{\Pruefungsart}{}
+
+%% Prüfer und Firma:
+\providecommand{\Erstpruefer}{}
+\providecommand{\Zweitpruefer}{}
+\providecommand{\Betreuer}{}
+\providecommand{\Firmenname}{}
+\providecommand{\Firma}{} 
+
+%% ABSTRACT PAGE
+\providecommand{\Stichworte}{}
+\providecommand{\StichworteEN}{}
+\providecommand{\Zusammenfassung}{}
+\providecommand{\ZusammenfassungEN}{}
