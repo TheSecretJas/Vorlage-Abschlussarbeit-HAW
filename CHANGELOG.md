@@ -1,7 +1,18 @@
 
 # Changelog
-
 Alle wesentlichen Änderungen an dieser LaTeX-Vorlage werden in dieser Datei dokumentiert.
+
+## [5.3.0] - 2026-06-17
+
+### Changed
+- **Setup:** Nutzerbefehle für das Dokument werden jetzt in Settings innitialisiert und dann in Setup neu definiert. Ermöglicht das Entfernen des Symbolverzeichnisses
+- **Layout:** 
+  - **Absatzabstand:** Globale Definition von `\parskip` auf 18pt (mit einer Toleranz von `plus 2pt minus 1pt`) am Dokumentenanfang hinzugefügt. Dies dynamische Abstände zwischen Absätzen, ohne manuelle Umbrüche erzwingen zu müssen.
+  - **Überschriften:** Die vertikalen Abstände vor und nach Titeln (`\section`, `\subsection`, `\subsubsection`) wurden mithilfe des Pakets `titlespacing`  geändert, um ein an den Absatzabstand angelehntes Schriftbild zu erzeugen.
+  - **Listen und Aufzählungen:** Integration des Pakets `enumitem`. Störende Abstände vor und nach Listen (`topsep`, `partopsep`) wurden auf 0pt gesetzt, der Abstand zwischen Listenpunkten (`itemsep`) auf feste 6pt fixiert.
+
+
+---
 
 ## [5.2.0] - 2026-05-26
 

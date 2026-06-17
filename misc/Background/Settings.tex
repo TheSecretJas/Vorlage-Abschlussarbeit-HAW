@@ -34,11 +34,15 @@
 \usepackage[normalem]{ulem} %Texte durchstreichen mit \sout bzw unterschtreichen 
 \usepackage{comment} %\begin{comment} und \end{comment} als Kommentierumgebung
 \usepackage{listings} %Codedarstellung mit \begin{lstlisting}[language=python]
+\usepackage{enumitem}
+\usepackage{titlesec}
 \usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black]{hyperref} %Hyperref als beste Refenzierungspackage
 
 
 %% Text und Schriftgrößeneinstellungen 
 \setlength{\parindent}{0em}% kein Einrücken
+
+%% Text und Schriftgrößeneinstellungen 
 \newcommand{\changefont}{\fontsize{7}{12}\selectfont}%Kopfzeile
 \newcommand{\changefontbig}{\fontsize{10}{12}\selectfont}%Kopfzeile
 \setcounter{biburllcpenalty}{9000}% Kleinbuchstaben
@@ -46,6 +50,17 @@
 \widowpenalty = 10000 %Vermeidung von Satzende auf nöchster Seite
 \clubpenalty = 10000 %Vermeidung von Absatzende auf nöchster Seite
 
+%%  Abstände für Aufzählungen und Titel
+\setlist{
+  itemsep=6pt,    % Abstand ZWISCHEN den einzelnen Listenpunkten (entspricht deinem Mini-Absatz)
+  parsep=0pt,     % Abstand bei mehreren Absätzen innerhalb EINES Listenpunktes
+  topsep=0pt,     % Abstand VOR und NACH der gesamten Liste zum normalen Fließtext
+  partopsep=0pt   % Verhindert extra Abstände
+}
+% Syntax: \titlespacing*{Befehl}{Abstand links}{Abstand davor}{Abstand danach}
+\titlespacing*{\section}{0pt}{12pt}{0pt}
+\titlespacing*{\subsection}{0pt}{0pt}{0pt}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0pt}
 
 %Nummerierungen innerhalb der Sections
 \numberwithin{equation}{section}
@@ -257,3 +272,31 @@
 \paragraph{#1}\label{#1}\mbox{}\\[1ex]
 }
 
+
+%% Einstellungen für das Dokument: 
+\providecommand{\Autor}{}
+\providecommand{\Vorname}{}
+\providecommand{\Nachname}{}
+\providecommand{\Matrikelnummer}{}
+\providecommand{\Datum}{}
+
+%% Titel der Arbeit:
+\providecommand{\Titel}{}
+\providecommand{\TitelEN}{}
+
+%% Typ der Arbeit
+\providecommand{\Dokumentenart}{}
+\providecommand{\Pruefungsart}{}
+
+%% Prüfer und Firma:
+\providecommand{\Erstpruefer}{}
+\providecommand{\Zweitpruefer}{}
+\providecommand{\Betreuer}{}
+\providecommand{\Firmenname}{}
+\providecommand{\Firma}{} 
+
+%% ABSTRACT PAGE
+\providecommand{\Stichworte}{}
+\providecommand{\StichworteEN}{}
+\providecommand{\Zusammenfassung}{}
+\providecommand{\ZusammenfassungEN}{}
