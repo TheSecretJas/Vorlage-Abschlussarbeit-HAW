@@ -2,6 +2,10 @@
 # Changelog
 Alle wesentlichen Änderungen an dieser LaTeX-Vorlage werden in dieser Datei dokumentiert.
 
+## [5.3.1] - 2026-07-03
+### Added
+- **KI-Hinweis:** Hinzufügen eines Hinweises zur Nutzung von KI-Werkzeugen, Bearbeitung unter 'mis\Setup'. Ein/Ausblenden im Literaturverzeichnis in der 'main' möglich.  
+
 ## [5.3.0] - 2026-06-17
 
 ### Changed
