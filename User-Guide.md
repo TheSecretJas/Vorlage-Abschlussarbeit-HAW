@@ -3,7 +3,7 @@
 Diese Anleitung dokumentiert den Aufbau der Vorlage, die Ersteinrichtung, sämtliche
 Spezialbefehle sowie die wichtigsten Anpassungs- und Best-Practice-Hinweise.
 
-> Stand: Vorlagen-Version 5.4.0 · Repository: <https://github.com/TheSecretJas/Vorlage-Abschlussarbeit-HAW>
+> Stand: Vorlagen-Version 5.4.1 · Repository: <https://github.com/TheSecretJas/Vorlage-Abschlussarbeit-HAW>
 
 ---
 
@@ -83,10 +83,6 @@ Auf **Overleaf** ist die Vorlage unmittelbar lauffähig: Den Compiler auf
 *pdfLaTeX* stellen; unter *Menu → Settings* ist Biber bereits als Standard
 hinterlegt. Xindy und Inkscape stehen serverseitig zur Verfügung.
 
-> **Hinweis:** Die Logik der Kopfzeile (`firstleftmark`) arbeitet gegenwärtig
-> zuverlässig bis einschließlich **TeXLive 2024**. Bei neueren lokalen
-> Distributionen kann die Darstellung des Kapitelnamens in der Kopfzeile
-> abweichen.
 
 ### 2.2 Persönliche Daten eintragen (`misc/Setup.tex`)
 

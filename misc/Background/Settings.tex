@@ -73,10 +73,26 @@
 \renewcommand{\labelenumiv}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.\arabic{enumiv}}
 \renewcommand{\labelitemi}{-}
 
-%% KOPFZEILE DARSTELLUNG Leftmark ohne sectionnummer
+%% KOPFZEILE DARSTELLUNG Leftmark ohne Sectionnummer
 
-\renewcommand{\sectionmark}[1]{\markboth{#1}{}}%
-\renewcommand{\subsectionmark}[1]{\markright{#1}}%
+\makeatletter
+\@ifundefined{NewMarkClass}{%
+    % Klassische Logik (TeXLive bis 2021)
+    \renewcommand{\sectionmark}[1]{\markboth{#1}{}}%
+    \renewcommand{\subsectionmark}[1]{\markright{#1}}%
+}{%
+    % Neuer Mark-Mechanismus (TeXLive ab 2022, noetig ab 2025)
+    \NewMarkClass{sectiontitle}%
+    \NewCommandCopy{\HAW@origmarkboth}{\markboth}%
+    \DeclareRobustCommand*{\markboth}[2]{%
+        \InsertMark{sectiontitle}{#1}%
+        \HAW@origmarkboth{#1}{#2}%
+    }%
+    \renewcommand{\sectionmark}[1]{\markboth{#1}{}}%
+    \renewcommand{\subsectionmark}[1]{\markright{#1}}%
+    \renewcommand{\firstleftmark}{\FirstMark{sectiontitle}}%
+}
+\makeatother
 
 % Neudefintionen von autoref Verweisen
 %autoref mit Equation Darstellung Gleichung (x)

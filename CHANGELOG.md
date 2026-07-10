@@ -1,6 +1,13 @@
 # Changelog
 Alle wesentlichen Änderungen an dieser LaTeX-Vorlage werden in dieser Datei dokumentiert.
 
+## [5.4.1] - 2026-07-09
+
+### Fixed
+- **Kopfzeile:** Fehlerhafte Einrückung der `leftmark` in der Kopfzeile behoben, die ab TeXLive 2025 durch die überarbeitete Mark-Logik von `fancyhdr`/`extramarks` (Version 5) auftrat. Die Kapitelnamen-Anzeige nutzt nun eine eigene, unabhängige Mark-Klasse über den LaTeX-Kernel und funktioniert damit sowohl auf älteren als auch auf aktuellen Distributionen zuverlässig.
+
+---
+
 ## [5.4.0] - 2026-07-04
 ### Added
 - **User Guide:** Detaillierte Bedienungsanleitung `User-Guide.md` im Markdown-Format hinzugefügt. Deckt Aufbau der Vorlage, Ersteinrichtung, Cheat Sheet aller Makros, Symbol- und Abkürzungsverzeichnis, Layoutoptionen, LaTeX-Best-Practices sowie Kompilier-Reihenfolge und Troubleshooting ab.
