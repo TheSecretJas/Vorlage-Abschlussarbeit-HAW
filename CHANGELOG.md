@@ -1,6 +1,14 @@
 # Changelog
 Alle wesentlichen Änderungen an dieser LaTeX-Vorlage werden in dieser Datei dokumentiert.
 
+
+## [5.4.2] - 2026-09-24
+
+### Fixed
+- **svg-Einbindung:** Einbindung von svg-Graphiken korrigiert, inkscapelatex ist jetzt standardmäßig auf false gestellt, um Schrift gleichartig mit dem Rest der Vektorgraphik zu skalieren.
+
+---
+
 ## [5.4.1] - 2026-07-09
 
 ### Fixed
